@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Find your next book by the shape of your reading life." />
+    <title>Marginalia — Personal book recommendations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="wordmark" href="#"><span class="wordmark-mark">M</span> marginalia</a>
+        <span class="topbar-note">recommendations for curious readers</span>
+      </header>
+
+      <section class="hero">
+        <p class="eyebrow">Your reading, reflected</p>
+        <h1>Find books that feel<br /><em>like you.</em></h1>
+        <p class="hero-copy">Import your Goodreads list and get thoughtful recommendations based on your taste — not a popularity contest.</p>
+      </section>
+
+      <section class="workspace" aria-label="Book recommendation workspace">
+        <aside class="sidebar">
+          <div class="step-heading"><span class="step-number">01</span><h2>Bring your shelf</h2></div>
+          <p class="muted">Upload the CSV export from Goodreads. We only use titles, authors, ratings, and shelves in your browser.</p>
+          <label class="upload-zone" for="csv-input">
+            <span class="upload-icon">↑</span>
+            <strong>Drop your CSV here</strong>
+            <span>or click to browse</span>
+            <input id="csv-input" type="file" accept=".csv,text/csv" />
+          </label>
+          <button class="text-button" id="demo-button" type="button">Use a sample shelf <span>→</span></button>
+          <label class="filter-option"><input id="exclude-dnf" type="checkbox" checked /> Exclude books marked “did not finish”</label>
+          <div class="privacy-note"><span>✦</span><span><strong>Private by design.</strong><br />Your file never leaves this tab.</span></div>
+
+          <div class="how-it-works">
+            <div class="step-heading"><span class="step-number">02</span><h2>How it works</h2></div>
+            <ol>
+              <li>We learn the themes, moods, and genres in your shelf.</li>
+              <li>We compare that profile to a handpicked set of books.</li>
+              <li>You get a short list of unexpected, relevant reads.</li>
+            </ol>
+          </div>
+        </aside>
+
+        <section class="results-panel">
+          <div class="results-header">
+            <div>
+              <p class="eyebrow">Your shelf <span id="shelf-count">0 books</span></p>
+              <h2 id="shelf-title">Waiting for your shelf</h2>
+            </div>
+            <button class="clear-button hidden" id="clear-button" type="button">Clear all</button>
+          </div>
+          <div id="shelf-empty" class="empty-state">
+            <div class="empty-doodle">◎</div>
+            <p>Your books will appear here</p>
+            <span>Import a Goodreads export or try the sample shelf.</span>
+          </div>
+          <div id="shelf-list" class="shelf-list hidden"></div>
+
+          <div id="recommendations" class="recommendations hidden">
+            <div class="recommendation-heading">
+              <div>
+                <p class="eyebrow">The shortlist</p>
+                <h2>Books with your fingerprints on them</h2>
+                <p class="score-explainer">Taste overlap is the share of your recurring Open Library subjects found on each book—not a probability.</p>
+              </div>
+              <div class="recommendation-actions">
+                <span class="match-note" id="catalog-status">loading catalog…</span>
+                <button class="refresh-button" id="search-deeper-button" type="button">Search deeper ↓</button>
+                <button class="refresh-button" id="refresh-button" type="button">Refresh picks ↻</button>
+              </div>
+            </div>
+            <div id="recommendation-grid" class="recommendation-grid"></div>
+          </div>
+        </section>
+      </section>
+      <footer><span>Built for readers who follow a thread.</span><span class="mono">MARGINALIA / 2026</span></footer>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
