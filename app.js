@@ -85,7 +85,11 @@ function normalizeSubject(subject) {
 
 function buildTasteProfile() {
   const counts = new Map();
-  shelf.forEach((book) => new Set(tagsFor(book)).forEach((tag) => counts.set(tag, (counts.get(tag) || 0) + 1)));
+  shelf.forEach((book) => {
+    const rating = Number(book.rating || book.myrating);
+    const weight = Number.isInteger(rating) && rating >= 1 && rating <= 5 ? rating / 3 : 1;
+    new Set(tagsFor(book)).forEach((tag) => counts.set(tag, (counts.get(tag) || 0) + weight));
+  });
   const totalWeight = [...counts.values()].reduce((sum, count) => sum + count, 0);
   return { weights: counts, totalWeight };
 }
