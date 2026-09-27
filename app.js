@@ -108,7 +108,7 @@ function rankRecommendations(candidates) {
     });
   const selected = [];
   const remaining = [...available];
-  while (selected.length < 6 && remaining.length) {
+  while (selected.length < 12 && remaining.length) {
     const next = remaining
       .map((book) => {
         const repeatedThemes = book.matchTerms.filter((tag) => selected.some((picked) => picked.matchTerms.includes(tag))).length;
